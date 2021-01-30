@@ -4,26 +4,29 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-import { useStyles } from "./styles";
+import styled from "styled-components";
+import { LOGIN } from "../../utils/constants";
+
+const StyledToolBar = styled(Toolbar)`
+  display: flex;
+  justify-content: space-between;
+`;
 
 export const Header = () => {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <div>
       <AppBar position="static">
-        <Toolbar className={classes.bar}>
+        <StyledToolBar>
           <IconButton
             edge="start"
-            className={classes.menuButton}
             color="inherit"
             aria-label="menu"
             disabled={true}
           >
             <ArrowBackIcon />
           </IconButton>
-          <Button color="inherit">Login</Button>
-        </Toolbar>
+          <Button color="inherit">{LOGIN}</Button>
+        </StyledToolBar>
       </AppBar>
     </div>
   );
