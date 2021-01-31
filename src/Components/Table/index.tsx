@@ -4,11 +4,10 @@ import { Header } from "../Header";
 import Data from "../../store/Data";
 import { TUser } from "../../utils/types";
 import { observer } from "mobx-react-lite";
-
-const logged_in = true;
+import Auth from "../../store/Authentication";
 
 export const Table = observer(() => {
-  return logged_in ? (
+  return Auth.token ? (
     <>
       <Header showSearchInput={true} />
       <div>

@@ -3,18 +3,20 @@ import { RouteComponentProps, Redirect } from "react-router-dom";
 import { TParams } from "./types";
 import { Header } from "../Header";
 import Data from "../../store/Data";
+import Auth from "../../store/Authentication";
+import { observer } from "mobx-react-lite";
 
-const logged_in = true;
+export const DataPage: React.FC<RouteComponentProps<TParams>> = observer(
+  ({ match }) => {
+    const { id } = match.params;
 
-export const DataPage: React.FC<RouteComponentProps<TParams>> = ({ match }) => {
-  const { id } = match.params;
-
-  return logged_in ? (
-    <>
-      <Header showBackButton={true} />
-      <div>{Data.selected?.status}</div>
-    </>
-  ) : (
-    <Redirect to="/login" />
-  );
-};
+    return Auth.token ? (
+      <>
+        <Header showBackButton={true} />
+        <div>{Data.selected?.status}</div>
+      </>
+    ) : (
+      <Redirect to="/login" />
+    );
+  }
+);

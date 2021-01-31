@@ -9,6 +9,7 @@ import { LOGOUT } from "../../utils/constants";
 import { SearchInput } from "../SearchInput";
 import { Props } from "./types";
 import { useHistory } from "react-router-dom";
+import Auth from "../../store/Authentication";
 
 const StyledToolBar = styled(Toolbar)`
   display: flex;
@@ -35,7 +36,9 @@ export const Header: React.FC<Props> = ({
             </IconButton>
           )}
           {showSearchInput && <SearchInput />}
-          <Button color="inherit">{LOGOUT}</Button>
+          <Button color="inherit" onClick={() => Auth.logout()}>
+            {LOGOUT}
+          </Button>
         </StyledToolBar>
       </AppBar>
     </div>
