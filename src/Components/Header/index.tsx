@@ -8,6 +8,7 @@ import styled from "styled-components";
 import { LOGOUT } from "../../utils/constants";
 import { SearchInput } from "../SearchInput";
 import { Props } from "./types";
+import { useHistory } from "react-router-dom";
 
 const StyledToolBar = styled(Toolbar)`
   display: flex;
@@ -18,12 +19,18 @@ export const Header: React.FC<Props> = ({
   showBackButton,
   showSearchInput,
 }) => {
+  let history = useHistory();
+
   return (
     <div>
       <AppBar position="static">
         <StyledToolBar>
           {showBackButton && (
-            <IconButton edge="start" color="inherit">
+            <IconButton
+              edge="start"
+              color="inherit"
+              onClick={() => history.goBack()}
+            >
               <ArrowBackIcon />
             </IconButton>
           )}

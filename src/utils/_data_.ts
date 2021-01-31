@@ -1,4 +1,5 @@
 import { uuidv4 } from "./helpers";
+import { TUser } from "./types";
 
 const data = [
   {
@@ -386,15 +387,6 @@ const data = [
     reference: "a1",
   },
 ];
-
-type TUser = {
-  accountId: string;
-  caseUid: string;
-  creationDate: string;
-  publicId: string;
-  status: string;
-  reference: string;
-};
 
 export const _getData: () => Promise<TUser[]> = () => {
   return new Promise((res, rej) => {
