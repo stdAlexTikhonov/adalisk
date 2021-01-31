@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Login } from "../Login";
-import { Table } from "../Table";
+import { MyTable } from "../Table";
 import { DataPage } from "../DataPage";
 import { NotFound } from "../NotFound";
 import Data from "../../store/Data";
@@ -15,7 +15,7 @@ export const App = () => {
     <Router>
       <Switch>
         <Route path="/login" exact component={Login} />
-        <Route path="/data" exact component={Table} />
+        <Route path="/data" exact component={MyTable} />
         <Route path="/data/:id" exact component={DataPage} />
         <Route path="*" component={NotFound} />
       </Switch>
