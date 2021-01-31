@@ -6,6 +6,7 @@ import IconButton from "@material-ui/core/IconButton";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import styled from "styled-components";
 import { LOGIN } from "../../utils/constants";
+import { SearchInput } from "../SearchInput";
 
 const StyledToolBar = styled(Toolbar)`
   display: flex;
@@ -25,6 +26,7 @@ export const Header = () => {
           >
             <ArrowBackIcon />
           </IconButton>
+          <SearchInput />
           <Button color="inherit">{LOGIN}</Button>
         </StyledToolBar>
       </AppBar>
