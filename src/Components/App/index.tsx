@@ -4,11 +4,9 @@ import { Login } from "../Login";
 import { Table } from "../Table";
 import { DataPage } from "../DataPage";
 import { NotFound } from "../NotFound";
-import { Header } from "../Header";
 
 export const App = () => (
   <Router>
-    <Header />
     <Switch>
       <Route path="/login" exact component={Login} />
       <Route path="/data" exact component={Table} />

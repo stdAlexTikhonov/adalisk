@@ -4,26 +4,32 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-import { useStyles } from "./styles";
+import styled from "styled-components";
+import { LOGOUT } from "../../utils/constants";
+import { SearchInput } from "../SearchInput";
+import { Props } from "./types";
 
-export const Header = () => {
-  const classes = useStyles();
+const StyledToolBar = styled(Toolbar)`
+  display: flex;
+  justify-content: space-between;
+`;
 
+export const Header: React.FC<Props> = ({
+  showBackButton,
+  showSearchInput,
+}) => {
   return (
-    <div className={classes.root}>
+    <div>
       <AppBar position="static">
-        <Toolbar className={classes.bar}>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-            disabled={true}
-          >
-            <ArrowBackIcon />
-          </IconButton>
-          <Button color="inherit">Login</Button>
-        </Toolbar>
+        <StyledToolBar>
+          {showBackButton && (
+            <IconButton edge="start" color="inherit">
+              <ArrowBackIcon />
+            </IconButton>
+          )}
+          {showSearchInput && <SearchInput />}
+          <Button color="inherit">{LOGOUT}</Button>
+        </StyledToolBar>
       </AppBar>
     </div>
   );
