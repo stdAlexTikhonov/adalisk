@@ -6,6 +6,25 @@ import Data from "../../store/Data";
 import Auth from "../../store/Authentication";
 import { observer } from "mobx-react-lite";
 import { TObject } from "../../utils/types";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+import styled from "styled-components";
+
+const StyledWrapper = styled.div`
+  flex-grow: 1;
+  display: flex;
+`;
+
+const StyledList = styled.div`
+  margin: auto;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+`;
+
+const StyledListItem = styled(ListItem)`
+  display: flex;
+  border-bottom: 1px solid #ccc;
+`;
 
 export const DataPage: React.FC<RouteComponentProps<TParams>> = observer(
   ({ match }) => {
@@ -18,17 +37,19 @@ export const DataPage: React.FC<RouteComponentProps<TParams>> = observer(
         style={{ display: "flex", flexDirection: "column", height: "100vh" }}
       >
         <Header showBackButton={true} />
-        <div style={{ flexGrow: 1, display: "flex" }}>
-          <div style={{ margin: "auto" }}>
+        <StyledWrapper>
+          <StyledList>
             {selected &&
               keys.map((key: string, i: number) => (
-                <div key={i} style={{ display: "flex" }}>
-                  <div>{key}: </div>
-                  <div>{selected[key]}</div>
-                </div>
+                <StyledListItem button={true} key={i}>
+                  <ListItemText style={{ minWidth: 150, maxWidth: 150 }}>
+                    <span style={{ fontWeight: "bold" }}>{key}:</span>
+                  </ListItemText>
+                  <ListItemText>{selected[key]}</ListItemText>
+                </StyledListItem>
               ))}
-          </div>
-        </div>
+          </StyledList>
+        </StyledWrapper>
       </div>
     ) : (
       <Redirect to="/login" />
