@@ -9,6 +9,7 @@ import { TObject } from "../../utils/types";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import styled from "styled-components";
+import { autorun } from "mobx";
 
 const StyledWrapper = styled.div`
   flex-grow: 1;
@@ -31,6 +32,10 @@ export const CasePage: React.FC<RouteComponentProps<TParams>> = observer(
     const { id } = match.params;
     const { keys } = CasesData;
     const selected: TObject = { ...CasesData.selected };
+
+    autorun(() => {
+      if (!CasesData.selected && Auth.token) CasesData.getCase(id);
+    });
 
     return Auth.token ? (
       <div
