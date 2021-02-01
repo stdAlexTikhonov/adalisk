@@ -6,3 +6,7 @@ export type TUser = {
   status: string;
   reference: string;
 };
+
+export type TObject = {
+  [key: string]: string;
+};
