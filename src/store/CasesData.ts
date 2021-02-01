@@ -19,7 +19,8 @@ class CasesData {
   }
 
   getCase(id: string) {
-    this.selected = this.cases.find((c: TCase) => c.caseUid === id);
+    const case_ = this.cases.find((c: TCase) => c.caseUid === id);
+    if (case_) this.selected = case_;
   }
 
   setPage(page: number) {
