@@ -1,4 +1,4 @@
-export type TUser = {
+export type TCase = {
   accountId: string;
   caseUid: string;
   creationDate: string;

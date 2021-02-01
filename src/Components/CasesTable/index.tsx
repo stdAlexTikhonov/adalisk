@@ -1,8 +1,8 @@
 import React from "react";
 import { Redirect, NavLink } from "react-router-dom";
 import { Header } from "../Header";
-import Data from "../../store/Data";
-import { TUser } from "../../utils/types";
+import CasesData from "../../store/CasesData";
+import { TCase } from "../../utils/types";
 import { observer } from "mobx-react-lite";
 import Auth from "../../store/Authentication";
 import Paper from "@material-ui/core/Paper";
@@ -42,11 +42,11 @@ const columns: Column[] = [
 ];
 
 const StyledContainer = styled(TableContainer)`
-  max-height: calc(100vh - 110px);
+  max-height: calc(100vh - 115px);
 `;
 
-export const Cases = observer(() => {
-  const { page, rowsPerPage, searchField } = Data;
+export const CasesTable = observer(() => {
+  const { page, rowsPerPage, searchField } = CasesData;
 
   const emphase = (value: string) =>
     value
@@ -64,14 +64,14 @@ export const Cases = observer(() => {
       );
 
   const handleChangePage = (event: unknown, newPage: number) => {
-    Data.setPage(newPage);
+    CasesData.setPage(newPage);
   };
 
   const handleChangeRowsPerPage = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    Data.setRowsPerPage(+event.target.value);
-    Data.setPage(0);
+    CasesData.setRowsPerPage(+event.target.value);
+    CasesData.setPage(0);
   };
 
   return Auth.token ? (
@@ -94,9 +94,9 @@ export const Cases = observer(() => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {Data.filtered
+              {CasesData.filtered
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row: TUser) => {
+                .map((row: TCase) => {
                   return (
                     <TableRow
                       hover
@@ -113,8 +113,8 @@ export const Cases = observer(() => {
                           >
                             {column.id === "reference" ? (
                               <NavLink
-                                to={"/data/" + row.caseUid}
-                                onClick={() => Data.getCase(row.caseUid)}
+                                to={"/case/" + row.caseUid}
+                                onClick={() => CasesData.getCase(row.caseUid)}
                               >
                                 {emphase(value)}
                               </NavLink>
@@ -133,7 +133,7 @@ export const Cases = observer(() => {
         <TablePagination
           rowsPerPageOptions={[10, 25, 100]}
           component="div"
-          count={Data.filtered.length}
+          count={CasesData.filtered.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onChangePage={handleChangePage}

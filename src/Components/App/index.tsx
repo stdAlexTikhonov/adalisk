@@ -1,24 +1,30 @@
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from "react-router-dom";
 import { Login } from "../Login";
-import { Cases } from "../Table";
-import { DataPage } from "../DataPage";
+import { CasesTable } from "../CasesTable";
+import { CasePage } from "../CasePage";
 import { NotFound } from "../NotFound";
-import Data from "../../store/Data";
+import CasesData from "../../store/CasesData";
 import Auth from "../../store/Authentication";
 import { autorun } from "mobx";
 
 export const App = () => {
   autorun(() => {
-    Data.fetchData();
+    CasesData.fetchData();
     Auth.checkLocalStorage();
   });
 
   return (
     <Router>
       <Switch>
+        <Route path="/" exact render={() => <Redirect to="/cases" />} />
         <Route path="/login" exact component={Login} />
-        <Route path="/data" exact component={Cases} />
-        <Route path="/data/:id" exact component={DataPage} />
+        <Route path="/cases" exact component={CasesTable} />
+        <Route path="/case/:id" exact component={CasePage} />
         <Route path="*" component={NotFound} />
       </Switch>
     </Router>

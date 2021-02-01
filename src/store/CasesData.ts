@@ -1,10 +1,10 @@
 import { makeAutoObservable } from "mobx";
 import { getData } from "../utils/api";
-import { TUser } from "../utils/types";
+import { TCase } from "../utils/types";
 
-class Data {
-  cases: TUser[] = [];
-  selected: TUser | undefined;
+class CasesData {
+  cases: TCase[] = [];
+  selected: TCase | undefined;
   page: number = 0;
   rowsPerPage: number = 10;
   searchField: string = "";
@@ -19,7 +19,7 @@ class Data {
   }
 
   getCase(id: string) {
-    this.selected = this.cases.find((c: TUser) => c.caseUid === id);
+    this.selected = this.cases.find((c: TCase) => c.caseUid === id);
   }
 
   setPage(page: number) {
@@ -36,7 +36,7 @@ class Data {
 
   get filtered() {
     return this.cases.filter(
-      (c: TUser) =>
+      (c: TCase) =>
         new RegExp(this.searchField, "i").test(c.status) ||
         new RegExp(this.searchField, "i").test(c.reference) ||
         new RegExp(this.searchField, "i").test(c.accountId) ||
@@ -51,4 +51,4 @@ class Data {
   }
 }
 
-export default new Data();
+export default new CasesData();
