@@ -1,5 +1,5 @@
 import { uuidv4 } from "./helpers";
-import { TUser } from "./types";
+import { TCase } from "./types";
 
 const data = [
   {
@@ -388,7 +388,7 @@ const data = [
   },
 ];
 
-export const _getData: () => Promise<TUser[]> = () => {
+export const _getData: () => Promise<TCase[]> = () => {
   return new Promise((res, rej) => {
     setTimeout(() => res(data), 1000);
   });

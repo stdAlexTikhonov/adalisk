@@ -32,7 +32,7 @@ const StyledInput = styled(TextField).attrs((props) => ({
 
 export const Login = observer(() =>
   Auth.token ? (
-    <Redirect to="/data" />
+    <Redirect to="/cases" />
   ) : (
     <StyledForm>
       <StyledInput

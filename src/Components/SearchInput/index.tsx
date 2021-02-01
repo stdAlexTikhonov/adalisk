@@ -3,7 +3,7 @@ import styled from "styled-components";
 import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
 import { SEARCH } from "../../utils/constants";
-import Data from "../../store/Data";
+import CasesData from "../../store/CasesData";
 import { observer } from "mobx-react-lite";
 
 type Props = {};
@@ -51,8 +51,8 @@ export const SearchInput: React.FC<Props> = observer((props) => (
       <SearchIcon />
     </StyledSearchIcon>
     <StyledInputBase
-      value={Data.searchField}
-      onChange={(e) => Data.setSearchField(e.target.value)}
+      value={CasesData.searchField}
+      onChange={(e) => CasesData.setSearchField(e.target.value)}
     />
   </StyledSearchInput>
 ));

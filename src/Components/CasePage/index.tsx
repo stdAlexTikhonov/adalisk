@@ -2,7 +2,7 @@ import React from "react";
 import { RouteComponentProps, Redirect } from "react-router-dom";
 import { TParams } from "./types";
 import { Header } from "../Header";
-import Data from "../../store/Data";
+import CasesData from "../../store/CasesData";
 import Auth from "../../store/Authentication";
 import { observer } from "mobx-react-lite";
 import { TObject } from "../../utils/types";
@@ -26,11 +26,11 @@ const StyledListItem = styled(ListItem)`
   border-bottom: 1px solid #ccc;
 `;
 
-export const DataPage: React.FC<RouteComponentProps<TParams>> = observer(
+export const CasePage: React.FC<RouteComponentProps<TParams>> = observer(
   ({ match }) => {
     const { id } = match.params;
-    const { keys } = Data;
-    const selected: TObject = { ...Data.selected };
+    const { keys } = CasesData;
+    const selected: TObject = { ...CasesData.selected };
 
     return Auth.token ? (
       <div

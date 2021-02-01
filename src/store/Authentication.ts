@@ -19,6 +19,7 @@ class Auth {
     } else {
       this.login = "";
       this.password = "";
+      alert("Wrong Login/Password! Please try again");
     }
   }
 
