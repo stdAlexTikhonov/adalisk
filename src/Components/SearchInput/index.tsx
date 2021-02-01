@@ -3,6 +3,8 @@ import styled from "styled-components";
 import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
 import { SEARCH } from "../../utils/constants";
+import Data from "../../store/Data";
+import { observer } from "mobx-react-lite";
 
 type Props = {};
 
@@ -30,6 +32,8 @@ const StyledSearchIcon = styled.div`
 const StyledInputBase = styled(InputBase).attrs((props) => ({
   inputProps: { "aria-label": "search" },
   placeholder: SEARCH,
+  value: props.value,
+  onChange: props.onChange,
 }))`
   padding: 8px;
   width: 15ch;
@@ -41,11 +45,14 @@ const StyledInputBase = styled(InputBase).attrs((props) => ({
   }
 `;
 
-export const SearchInput: React.FC<Props> = (props) => (
+export const SearchInput: React.FC<Props> = observer((props) => (
   <StyledSearchInput {...props}>
     <StyledSearchIcon>
       <SearchIcon />
     </StyledSearchIcon>
-    <StyledInputBase />
+    <StyledInputBase
+      value={Data.searchField}
+      onChange={(e) => Data.setSearchField(e.target.value)}
+    />
   </StyledSearchInput>
-);
+));

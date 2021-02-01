@@ -7,6 +7,7 @@ class Data {
   selected: TUser | undefined;
   page: number = 0;
   rowsPerPage: number = 10;
+  searchField: string = "";
 
   constructor() {
     makeAutoObservable(this);
@@ -27,6 +28,22 @@ class Data {
 
   setRowsPerPage(rpp: number) {
     this.rowsPerPage = rpp;
+  }
+
+  setSearchField(str: string) {
+    this.searchField = str;
+  }
+
+  get filtered() {
+    return this.cases.filter(
+      (c: TUser) =>
+        new RegExp(this.searchField, "i").test(c.status) ||
+        new RegExp(this.searchField, "i").test(c.reference) ||
+        new RegExp(this.searchField, "i").test(c.accountId) ||
+        new RegExp(this.searchField, "i").test(c.publicId) ||
+        new RegExp(this.searchField, "i").test(c.creationDate) ||
+        new RegExp(this.searchField, "i").test(c.caseUid)
+    );
   }
 }
 

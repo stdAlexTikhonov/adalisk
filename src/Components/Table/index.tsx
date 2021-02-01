@@ -79,7 +79,7 @@ export const Cases = observer(() => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {Data.cases
+              {Data.filtered
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row: TUser) => {
                   return (
@@ -115,7 +115,7 @@ export const Cases = observer(() => {
         <TablePagination
           rowsPerPageOptions={[10, 25, 100]}
           component="div"
-          count={Data.cases.length}
+          count={Data.filtered.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onChangePage={handleChangePage}
