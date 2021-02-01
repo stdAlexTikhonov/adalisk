@@ -1,15 +1,17 @@
-import { useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Login } from "../Login";
 import { Cases } from "../Table";
 import { DataPage } from "../DataPage";
 import { NotFound } from "../NotFound";
 import Data from "../../store/Data";
+import Auth from "../../store/Authentication";
+import { autorun } from "mobx";
 
 export const App = () => {
-  useEffect(() => {
+  autorun(() => {
     Data.fetchData();
-  }, []);
+    Auth.checkLocalStorage();
+  });
 
   return (
     <Router>

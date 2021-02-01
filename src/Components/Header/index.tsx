@@ -16,6 +16,11 @@ const StyledToolBar = styled(Toolbar)`
   justify-content: space-between;
 `;
 
+const StyledLogin = styled.span`
+  font-size: 17px;
+  padding: 5px;
+`;
+
 export const Header: React.FC<Props> = ({
   showBackButton,
   showSearchInput,
@@ -36,9 +41,12 @@ export const Header: React.FC<Props> = ({
             </IconButton>
           )}
           {showSearchInput && <SearchInput />}
-          <Button color="inherit" onClick={() => Auth.logout()}>
-            {LOGOUT}
-          </Button>
+          <div>
+            <StyledLogin>{Auth.login}</StyledLogin>
+            <Button color="inherit" onClick={() => Auth.logout()}>
+              {LOGOUT}
+            </Button>
+          </div>
         </StyledToolBar>
       </AppBar>
     </div>
