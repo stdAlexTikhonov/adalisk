@@ -12,8 +12,11 @@ class Auth {
 
   async loginUser() {
     const res = await userLogin(this.login, this.password);
-    if (res) this.token = res;
-    else {
+    if (res) {
+      this.token = res;
+      localStorage.setItem(res.toString(), this.login);
+      localStorage.setItem("token", res.toString());
+    } else {
       this.login = "";
       this.password = "";
     }
@@ -28,9 +31,20 @@ class Auth {
   }
 
   logout() {
-    this.token = false;
     this.login = "";
     this.password = "";
+    localStorage.removeItem(this.token as string);
+    localStorage.removeItem("token");
+    this.token = false;
+  }
+
+  checkLocalStorage() {
+    const token = localStorage.getItem("token");
+    if (token) {
+      this.token = token;
+      const login = localStorage.getItem(token) || "";
+      this.login = login;
+    }
   }
 }
 
