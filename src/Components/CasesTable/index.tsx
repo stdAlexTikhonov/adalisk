@@ -15,6 +15,7 @@ import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 import { Column } from "./types";
 import styled from "styled-components";
+import { autorun } from "mobx";
 
 const columns: Column[] = [
   {
@@ -47,6 +48,10 @@ const StyledContainer = styled(TableContainer)`
 
 export const CasesTable = observer(() => {
   const { page, rowsPerPage, searchField } = CasesData;
+
+  autorun(() => {
+    if (CasesData.cases.length === 0) CasesData.fetchData();
+  });
 
   const emphase = (value: string) =>
     value

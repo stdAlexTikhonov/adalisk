@@ -8,13 +8,11 @@ import { Login } from "../Login";
 import { CasesTable } from "../CasesTable";
 import { CasePage } from "../CasePage";
 import { NotFound } from "../NotFound";
-import CasesData from "../../store/CasesData";
 import Auth from "../../store/Authentication";
 import { autorun } from "mobx";
 
 export const App = () => {
   autorun(() => {
-    CasesData.fetchData();
     Auth.checkLocalStorage();
   });
 
