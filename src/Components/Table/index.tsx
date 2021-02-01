@@ -46,7 +46,20 @@ const StyledContainer = styled(TableContainer)`
 `;
 
 export const Cases = observer(() => {
-  const { page, rowsPerPage } = Data;
+  const { page, rowsPerPage, searchField } = Data;
+
+  const emphase = (value: string) =>
+    value
+      .split(searchField)
+      .join("|" + searchField + "|")
+      .split("|")
+      .map((item: string) =>
+        item === searchField ? (
+          <span style={{ background: "yellow" }}>{item}</span>
+        ) : (
+          <span>{item}</span>
+        )
+      );
 
   const handleChangePage = (event: unknown, newPage: number) => {
     Data.setPage(newPage);
@@ -98,10 +111,10 @@ export const Cases = observer(() => {
                                 to={"/data/" + row.caseUid}
                                 onClick={() => Data.getCase(row.caseUid)}
                               >
-                                {value}
+                                {emphase(value)}
                               </NavLink>
                             ) : (
-                              value
+                              emphase(value)
                             )}
                           </TableCell>
                         );
