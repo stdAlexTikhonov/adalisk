@@ -5,6 +5,8 @@ import { TUser } from "../utils/types";
 class Data {
   cases: TUser[] = [];
   selected: TUser | undefined;
+  page: number = 0;
+  rowsPerPage: number = 10;
 
   constructor() {
     makeAutoObservable(this);
@@ -17,6 +19,14 @@ class Data {
 
   getCase(id: string) {
     this.selected = this.cases.find((c: TUser) => c.caseUid === id);
+  }
+
+  setPage(page: number) {
+    this.page = page;
+  }
+
+  setRowsPerPage(rpp: number) {
+    this.rowsPerPage = rpp;
   }
 }
 
