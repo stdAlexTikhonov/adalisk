@@ -45,6 +45,10 @@ class Data {
         new RegExp(this.searchField, "i").test(c.caseUid)
     );
   }
+
+  get keys() {
+    return this.selected ? Object.keys(this.selected) : [];
+  }
 }
 
 export default new Data();

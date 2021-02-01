@@ -53,11 +53,13 @@ export const Cases = observer(() => {
       .split(searchField)
       .join("|" + searchField + "|")
       .split("|")
-      .map((item: string) =>
+      .map((item: string, i: number) =>
         item === searchField ? (
-          <span style={{ background: "yellow" }}>{item}</span>
+          <span key={i} style={{ background: "yellow" }}>
+            {item}
+          </span>
         ) : (
-          <span>{item}</span>
+          <span key={i}>{item}</span>
         )
       );
 
@@ -105,7 +107,10 @@ export const Cases = observer(() => {
                       {columns.map((column) => {
                         const value = row[column.id];
                         return (
-                          <TableCell key={column.id} align={column.align}>
+                          <TableCell
+                            key={column.id + row.caseUid}
+                            align={column.align}
+                          >
                             {column.id === "reference" ? (
                               <NavLink
                                 to={"/data/" + row.caseUid}
