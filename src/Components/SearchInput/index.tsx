@@ -29,19 +29,26 @@ const StyledSearchIcon = styled.div`
   justify-content: center;
 `;
 
-const StyledInputBase = styled(InputBase).attrs((props) => ({
+const StyledInputBase = styled.input.attrs((props) => ({
   inputProps: { "aria-label": "search", style: { color: "white" } },
   placeholder: SEARCH,
   value: props.value,
   onChange: props.onChange,
 }))`
   padding: 8px;
+  background: transparent;
+  color: white;
   width: 15ch;
+  border: none;
+  outline: none;
   color: white;
   padding-left: calc(1em + 32px);
   transition: width 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  &:hover {
+  :focus {
     width: 40ch;
+  }
+  ::placeholder {
+    color: rgba(255, 255, 255, 0.5);
   }
 `;
 
