@@ -30,7 +30,7 @@ const StyledSearchIcon = styled.div`
 `;
 
 const StyledInputBase = styled(InputBase).attrs((props) => ({
-  inputProps: { "aria-label": "search" },
+  inputProps: { "aria-label": "search", style: { color: "white" } },
   placeholder: SEARCH,
   value: props.value,
   onChange: props.onChange,
